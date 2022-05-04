@@ -1,17 +1,85 @@
 package com.company;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Main {
+public class GUI extends JPanel implements ActionListener, DocumentListener{
+    // canvas for other GUI widgets
+    JButton button1;
+    JButton button2;
 
-    public static void main(String[] args) {
-	// demo gui
-	System.out.println("SEQUENCE: Program started");
+    public GUI(int width, int height) {
+        System.out.println("SEQUENCE: GUI Constructor");
+        this.setPreferredSize(new Dimension(width, height));
+        setLayout(null);
 
-	JFrame frame = new JFrame("Demo Frame");
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	GUI myGUI = new GUI(300, 150);
-	frame.add(myGUI);
-	frame.pack();
-	frame.setVisible(true);
+        JLabel heading = new JLabel("Demo GUI");
+        heading.setBounds(0,0, 200, 40);
+        add(heading);
+
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBounds(290,0, 10, 150);
+        add(scrollBar);
+
+        button1 = new JButton("B1");
+        button1.setBounds(0,40, 100, 40);
+        button2 = new JButton("B2");
+        button2.setBounds(120,40, 100, 40);
+        button1.addActionListener(this);
+        button2.addActionListener(this);
+        add(button1);
+        add(button2);
+
+        JMenu menu = new JMenu("Menu");
+        JMenuBar menuBar = new JMenuBar();
+        JMenuItem i1, i2, i3, i4, i5;
+        i1 = new JMenuItem("Item 1");
+        i2 = new JMenuItem("Item 2");
+        i3 = new JMenuItem("Item 3");
+        i4 = new JMenuItem("Item 4");
+        i5 = new JMenuItem("Item 5");
+        menu.setBounds(210,100, 50, 40);
+        setJMenuBar(menu);
+        menu.add(i1);
+        menu.add(i2);
+        menu.add(i3);
+        menu.add(i4);
+        menu.add(i5);
+        add(menuBar);
+        add(menu);
+
+        JTextField username = new JTextField();
+        username.setBounds(0,100, 200, 40);
+        username.getDocument().addDocumentListener(this);
+        add(username);
+
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand() == "B1") {
+            System.out.println("1st button");
+        } else {
+            System.out.println("click! " + e.getActionCommand());
+        }
+    }
+
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        System.out.println("insert");
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+        System.out.println("removed");
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+        System.out.println("changed");
+    }
+
 }
