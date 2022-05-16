@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         // demo gui
-        System.out.println("SEQUENCE: Program started");
+        System.out.println("Starting...");
 
         JFrame frame = new JFrame("Demo Frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -13,7 +13,8 @@ public class Main {
         frame.add(myGUI);
         frame.pack();
         frame.setVisible(true);
+        System.out.println("Finished.");
 
-        MenuExample m = new MenuExample();
+        //MenuExample m = new MenuExample();
     }
 }

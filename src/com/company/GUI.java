@@ -56,14 +56,22 @@ public class GUI extends JPanel implements ActionListener, DocumentListener{
         username.getDocument().addDocumentListener(this);
         add(username);
 
+        JButton newGraph = new JButton("Graph results");
+        newGraph.setBounds(110, 0, 115, 30);
+        newGraph.addActionListener(this);
+        add(newGraph);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "B1") {
             System.out.println("1st button");
-        } else {
+        } else if (e.getActionCommand() == "B2"){
             System.out.println("click! " + e.getActionCommand());
+        } else if (e.getActionCommand().equals("Graph results")) {
+            System.out.println("click");
+            Basic test = new Basic(300, 300);
         }
     }
 
